@@ -5,6 +5,7 @@ import {demoVisitor} from "./behavioralPatterns/visitor/demo";
 import {demoTemplateMethod} from "./behavioralPatterns/templateMethod/demo";
 import {demoStrategy} from "./behavioralPatterns/strategy/demo";
 import {demoState} from "./behavioralPatterns/state/demo";
+import {demoObserver} from "./behavioralPatterns/observer/demo";
 
 // demoFactory();
 // demoAbstractFactory();
@@ -13,3 +14,4 @@ import {demoState} from "./behavioralPatterns/state/demo";
 // demoTemplateMethod();
 // demoStrategy();
 // demoState();
+demoObserver()

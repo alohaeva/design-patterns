@@ -7,6 +7,7 @@ import {demoStrategy} from "./behavioralPatterns/strategy/demo";
 import {demoState} from "./behavioralPatterns/state/demo";
 import {demoObserver} from "./behavioralPatterns/observer/demo";
 import {demoMomento} from "./behavioralPatterns/momento/demo";
+import {demoMediator} from "./behavioralPatterns/mediator/demo";
 
 // demoFactory();
 // demoAbstractFactory();
@@ -16,4 +17,5 @@ import {demoMomento} from "./behavioralPatterns/momento/demo";
 // demoStrategy();
 // demoState();
 // demoObserver()
-demoMomento()
+// demoMomento()
+// demoMediator();

@@ -12,7 +12,7 @@ import {demoMediator} from "./behavioralPatterns/mediator/demo";
 import {demoIterator} from "./behavioralPatterns/iterator/demo";
 
 // demoFactory();
-// demoSingleton();
+demoSingleton();
 // demoAbstractFactory();
 // demoBuilder();
 // demoVisitor();
@@ -22,4 +22,4 @@ import {demoIterator} from "./behavioralPatterns/iterator/demo";
 // demoObserver()
 // demoMomento()
 // demoMediator();
-demoIterator()
+// demoIterator()

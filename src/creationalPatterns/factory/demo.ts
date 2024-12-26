@@ -1,25 +1,13 @@
-import {buttonFactory, ButtonTypes} from "./index";
+import { WebDialog, ServerDialog } from "./index";
 
-export const demoFactory = () => {
-	const primaryButtonData = {
-		label: "PrimaryButton",
-		onClick: () => {
-			console.log('click button')
-		}
-	}
+export const demoFactory = (env: 'WEB' | 'SERVER') => {
+	const dialog = env === 'WEB' ? new WebDialog() : new ServerDialog();
 
-	const secondaryButtonData = {
-		label: "SecondaryButton",
-		onClick: () => {
-			console.log('click button')
-		}
-	}
+	dialog.render();
 
-	const primaryButton = buttonFactory.createButton(ButtonTypes.Primary, primaryButtonData);
-	const secondaryButton = buttonFactory.createButton(ButtonTypes.Secondary, secondaryButtonData);
+	console.log(dialog.open);
 
-	primaryButton.render();
-	secondaryButton.render();
-	primaryButton.click();
-	secondaryButton.click();
+	dialog.clickButton();
+
+	console.log(dialog.open);
 }

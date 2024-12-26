@@ -13,8 +13,9 @@ import {demoMediator} from "./behavioralPatterns/mediator/demo";
 import {demoIterator} from "./behavioralPatterns/iterator/demo";
 
 // demoSingleton();
-demoPrototype();
-// demoFactory();
+// demoPrototype();
+demoFactory("WEB");
+demoFactory("SERVER");
 // demoAbstractFactory();
 // demoBuilder();
 // demoVisitor();

@@ -1,6 +1,5 @@
 type ButtonProps = {
     label: string;
-    onClick: () => void;
 }
 
 export enum ButtonTypes {
@@ -8,58 +7,116 @@ export enum ButtonTypes {
     Primary = 'Primary'
 }
 
-abstract class AbstractButton {
-    private label: string;
-    onClick: () => void;
+/**
+ * This interface should declare methods that make sense in every product
+ * fe: onClick, click
+ */
+class Button {
+	label: string;
+	onClickFn?: () => void;
 
-    protected constructor({ label, onClick }: ButtonProps) {
-        this.label = label;
-        this.onClick = onClick;
-    }
-
-    abstract render(): void;
-    abstract click(): void;
-}
-
-export class PrimaryButton extends AbstractButton {
     constructor(props: ButtonProps) {
-        super(props);
-    }
+		this.label = props.label;
+	}
 
-    click() {
-        console.log(`click ${this.constructor.name}`)
-        this.onClick();
-    }
-    render() {
-        console.log(`render ${this.constructor.name}`)
-    }
+    render(): void {
+		throw new Error('Implement Render Button');
+	}
+
+	onClick(fn: () => void) {
+		this.onClickFn = fn;
+	}
+
+    click(): void {
+		this.onClickFn?.();
+		console.log(`click ${this.label}`)
+	}
 }
 
-export class SecondaryButton extends AbstractButton {
+/**
+ * Make all products follow the same interface
+ */
+export class ServerButton extends Button {
     constructor(props: ButtonProps) {
-        super(props);
+		super(props)
     }
 
-    click() {
-        console.log(`click ${this.constructor.name}`)
-        this.onClick();
-    }
     render() {
-        console.log(`render ${this.constructor.name}`)
+        console.log(`render ${ButtonTypes.Primary} ${this.label}`)
     }
 }
 
-const buttonTypesRegistry = {
-    [ButtonTypes.Secondary]: SecondaryButton,
-    [ButtonTypes.Primary]: PrimaryButton,
+/**
+ * Make all products follow the same interface
+ */
+export class WebButton extends Button {
+	constructor(props: ButtonProps) {
+		super(props)
+	}
+
+	render() {
+		console.log(`render ${ButtonTypes.Secondary} ${this.constructor.name}`)
+	}
 }
 
-export class ButtonsFactory {
-    constructor() {}
+class Dialog {
+	open: boolean = true;
+	button?: Button;
 
-    createButton(type: ButtonTypes, params: ButtonProps): AbstractButton {
-        return new buttonTypesRegistry[type](params);
-    }
+	constructor() {}
+
+	private closeDialog(): void {
+		this.open = false;
+	}
+
+	clickButton(): void {
+		this.button?.click();
+	}
+
+	/**
+	 * Add an empty factory method inside the creator class.
+	 * The return type of the method should match the common product interface
+	 * @protected
+	 */
+	protected createButton(): Button {
+		throw new Error('Implement Create Button');
+	}
+
+	render() {
+		this.button = this.createButton();
+		this.button?.onClick(this.closeDialog.bind(this));
+		this.button?.render();
+	}
 }
 
-export const buttonFactory = new ButtonsFactory();
+/**
+ * create a set of creator subclasses for each type of product
+ */
+export class WebDialog extends Dialog {
+	constructor() {
+		super();
+	}
+
+	/**
+	 * Override the factory method in the subclasses
+	 */
+	protected createButton(): WebButton {
+		return new WebButton({ label: 'WebDialog button' });
+	}
+}
+
+/**
+ * create a set of creator subclasses for each type of product
+ */
+export class ServerDialog extends Dialog {
+	constructor() {
+		super();
+	}
+
+	/**
+	 * Override the factory method in the subclasses
+	 */
+	protected createButton(): ServerButton {
+		return new ServerButton({ label: 'ServerDialog button' })
+	}
+}

@@ -1,68 +1,100 @@
-export enum DevicesFactoryTypes {
-	Samsung = 'samsung',
-	Apple = 'apple',
-}
-
-type SmartphoneDevice = {
+/**
+ * Declare abstract product interfaces for all product types.
+ */
+interface SmartphoneDevice {
 	name: string;
 }
 
-type TabletDevice = {
+interface TabletDevice {
 	name: string;
 }
 
-abstract class DevicesFactory {
-	protected constructor() {}
+/**
+ * Make all concrete product classes implement these interfaces
+ */
+class SamsungSmartPhoneDevice implements SmartphoneDevice {
+	name: string;
 
-	abstract createSmartphone(): SmartphoneDevice;
-	abstract createTablet(): TabletDevice;
-}
-
-class AppleDevicesFactory extends DevicesFactory {
-	constructor() {
-		super()
-	}
-
-	createSmartphone(): SmartphoneDevice{
-		return {
-			name: 'Apple smartphone'
-		}
-	}
-
-	createTablet(): TabletDevice {
-		return {
-			name: 'Apple tablet'
-		}
+	constructor(name: string) {
+		this.name = name;
 	}
 }
 
-class SamsungDevicesFactory extends DevicesFactory {
-	constructor() {
-		super()
+class AppleSmartPhoneDevice implements SmartphoneDevice {
+	name: string;
+
+	constructor(name: string) {
+		this.name = name;
 	}
+}
+
+class SamsungTabletDevice implements TabletDevice {
+	name: string;
+
+	constructor(name: string) {
+		this.name = name;
+	}
+}
+
+class AppleTabletDevice implements TabletDevice {
+	name: string;
+
+	constructor(name: string) {
+		this.name = name;
+	}
+}
+
+/**
+ * Declare the abstract factory interface with a set of creation methods for all abstract products.
+ */
+interface DevicesFactory {
+	createSmartphone(): SmartphoneDevice;
+	createTablet(): TabletDevice;
+}
+
+/**
+ * Implement a set of concrete factory classes, one for each product variant.
+ */
+export class AppleDevicesFactory implements DevicesFactory {
+	constructor() {}
 
 	createSmartphone(): SmartphoneDevice {
-		return {
-			name: 'Samsung smartphone'
-		}
+		return new AppleSmartPhoneDevice('Apple iPhone');
 	}
 
 	createTablet(): TabletDevice {
+		return new AppleTabletDevice('Apple Tablet');
+	}
+}
+
+export class SamsungDevicesFactory implements DevicesFactory {
+	constructor() {}
+
+	createSmartphone(): SmartphoneDevice {
+		return new SamsungSmartPhoneDevice('Samsung SmartPhone');
+	}
+
+	createTablet(): TabletDevice {
+		return new SamsungTabletDevice('Samsung Tablet');
+	}
+}
+
+/**
+ * 1. Create factory initialization code somewhere in the app.
+ * 2. It should instantiate one of the concrete factory classes
+ * 3. Pass this factory object to all classes that construct products
+ */
+export class Application {
+	factory: DevicesFactory;
+
+	constructor (factory: DevicesFactory) {
+		this.factory = factory
+	}
+
+	produce() {
 		return {
-			name: 'Samsung tablet'
+			phone: this.factory.createSmartphone(),
+			tablet: this.factory.createTablet(),
 		}
 	}
 }
-
-const devicesFactoriesTypes = {
-	[DevicesFactoryTypes.Samsung]: SamsungDevicesFactory,
-	[DevicesFactoryTypes.Apple]: AppleDevicesFactory,
-}
-
-class AbstractDevicesFactory {
-	createDevicesFactory(type: DevicesFactoryTypes): DevicesFactory {
-		return new devicesFactoriesTypes[type]();
-	}
-}
-
-export const devicesFactory = new AbstractDevicesFactory();

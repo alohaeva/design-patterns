@@ -1,13 +1,20 @@
-import {devicesFactory, DevicesFactoryTypes} from "./index";
+import { AppleDevicesFactory, Application, SamsungDevicesFactory } from "./index";
 
-export const demoAbstractFactory = () => {
-	const appleDevices = devicesFactory.createDevicesFactory(DevicesFactoryTypes.Apple);
+export const demoAbstractFactory = (env: 'Windows' | 'Mac') => {
+	let app;
 
-	console.log(appleDevices.createTablet());
-	console.log(appleDevices.createSmartphone())
+	if (env == "Windows") {
+		app = new Application(new SamsungDevicesFactory())
+	} else if (env == "Mac") {
+		app = new Application(new AppleDevicesFactory())
+	} else {
+		throw new Error("Error! Unknown operating system.")
+	}
 
-	const samsungDevices = devicesFactory.createDevicesFactory(DevicesFactoryTypes.Samsung);
+	if (app) {
+		const { tablet, phone } = app.produce();
 
-	console.log(samsungDevices.createTablet());
-	console.log(samsungDevices.createSmartphone())
+		console.log(tablet)
+		console.log(phone)
+	}
 }

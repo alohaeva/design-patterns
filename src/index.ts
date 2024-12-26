@@ -14,9 +14,10 @@ import {demoIterator} from "./behavioralPatterns/iterator/demo";
 
 // demoSingleton();
 // demoPrototype();
-demoFactory("WEB");
-demoFactory("SERVER");
-// demoAbstractFactory();
+// demoFactory("WEB");
+// demoFactory("SERVER");
+demoAbstractFactory('Mac');
+demoAbstractFactory('Windows');
 // demoBuilder();
 // demoVisitor();
 // demoTemplateMethod();

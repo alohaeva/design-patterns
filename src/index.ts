@@ -2,7 +2,12 @@ import {demoFactory} from "./creationalPatterns/factory/demo";
 import {demoSingleton} from "./creationalPatterns/singleton/demo";
 import {demoPrototype} from "./creationalPatterns/prototype/demo";
 import {demoAbstractFactory} from "./creationalPatterns/abstractFactory/demo";
-import {demoBuilder} from "./creationalPatterns/builder/demo";
+import { demoBuilder } from "./creationalPatterns/builder/demo";
+
+// structural
+import {demoAdapter} from "./strcuturalPatterns/adapter/demo";
+
+// behavioural
 import {demoVisitor} from "./behavioralPatterns/visitor/demo";
 import {demoTemplateMethod} from "./behavioralPatterns/templateMethod/demo";
 import {demoStrategy} from "./behavioralPatterns/strategy/demo";
@@ -13,7 +18,7 @@ import {demoMediator} from "./behavioralPatterns/mediator/demo";
 import {demoIterator} from "./behavioralPatterns/iterator/demo";
 
 /**
- * Demo of Creational Design Patterns
+ * Demos of Creational Design Patterns
  */
 // demoSingleton();
 // demoPrototype();
@@ -21,8 +26,16 @@ import {demoIterator} from "./behavioralPatterns/iterator/demo";
 // demoFactory("SERVER");
 // demoAbstractFactory('Mac');
 // demoAbstractFactory('Windows');
-demoBuilder();
+// demoBuilder();
 
+/**
+ * Demos of Structural Design Patterns
+ */
+demoAdapter()
+
+/**
+ * Demos of Behavioural Design Patterns
+ */
 // demoVisitor();
 // demoTemplateMethod();
 // demoStrategy();

@@ -12,13 +12,17 @@ import {demoMomento} from "./behavioralPatterns/momento/demo";
 import {demoMediator} from "./behavioralPatterns/mediator/demo";
 import {demoIterator} from "./behavioralPatterns/iterator/demo";
 
+/**
+ * Demo of Creational Design Patterns
+ */
 // demoSingleton();
 // demoPrototype();
 // demoFactory("WEB");
 // demoFactory("SERVER");
-demoAbstractFactory('Mac');
-demoAbstractFactory('Windows');
-// demoBuilder();
+// demoAbstractFactory('Mac');
+// demoAbstractFactory('Windows');
+demoBuilder();
+
 // demoVisitor();
 // demoTemplateMethod();
 // demoStrategy();

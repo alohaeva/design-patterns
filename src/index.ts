@@ -7,6 +7,7 @@ import { demoBuilder } from "./creationalPatterns/builder/demo";
 // structural
 import {demoAdapter} from "./structuralPatterns/adapter/demo";
 import { demoBridge } from "./structuralPatterns/bridge/demo";
+import { demoComposite } from "./structuralPatterns/composite/demo";
 
 // behavioural
 import {demoVisitor} from "./behavioralPatterns/visitor/demo";
@@ -33,8 +34,8 @@ import {demoIterator} from "./behavioralPatterns/iterator/demo";
  * Demos of Structural Design Patterns
  */
 // demoAdapter()
-demoBridge()
-
+// demoBridge()
+demoComposite();
 /**
  * Demos of Behavioural Design Patterns
  */

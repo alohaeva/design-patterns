@@ -1,6 +1,3 @@
-
-
-// Product class
 class House {
 	private walls: number = 0;
 	private doors: number = 0;
@@ -37,9 +34,6 @@ class House {
 	}
 }
 
-/**
- * Clearly define the common construction steps for building all available product representations
- */
 class HouseDesign {
 	private walls: number = 0;
 	private doors: number = 0;
@@ -77,6 +71,7 @@ class HouseDesign {
 }
 
 /**
+ * Clearly define the common construction steps for building all available product representations
  * Declare these steps in the base builder interface.
  */
 interface HouseBuilder {
@@ -88,7 +83,10 @@ interface HouseBuilder {
 	reset(): void;
 }
 
-// Additional Concrete Builder
+/**
+ * 1. Create a concrete builder class for each of the product representations
+ * 2. implement their construction steps.
+ */
 export class HouseDesignBuilder implements HouseBuilder {
 	private houseDesign: HouseDesign;
 
@@ -136,10 +134,6 @@ export class HouseDesignBuilder implements HouseBuilder {
 	}
 }
 
-/**
- * 1. Create a concrete builder class for each of the product representations
- * 2. implement their construction steps.
- */
 export class CommonHouseBuilder implements HouseBuilder {
 	private house: House;
 

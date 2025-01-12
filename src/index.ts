@@ -18,6 +18,7 @@ import {demoObserver} from "./behavioralPatterns/observer/demo";
 import {demoMomento} from "./behavioralPatterns/momento/demo";
 import {demoMediator} from "./behavioralPatterns/mediator/demo";
 import {demoIterator} from "./behavioralPatterns/iterator/demo";
+import {demoDecorator} from "./structuralPatterns/decorator/demo";
 
 /**
  * Demos of Creational Design Patterns
@@ -35,7 +36,8 @@ import {demoIterator} from "./behavioralPatterns/iterator/demo";
  */
 // demoAdapter()
 // demoBridge()
-demoComposite();
+// demoComposite();
+demoDecorator({ encryption: true, compression: true })
 /**
  * Demos of Behavioural Design Patterns
  */

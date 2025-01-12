@@ -1,0 +1,1 @@
+encrypted(compressed({'string': 'value'}))

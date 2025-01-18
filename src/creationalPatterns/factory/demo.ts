@@ -1,4 +1,4 @@
-import { WebDialog, ServerDialog } from "./index";
+import { WebDialog, ServerDialog } from './index';
 
 export const demoFactory = (env: 'WEB' | 'SERVER') => {
 	const dialog = env === 'WEB' ? new WebDialog() : new ServerDialog();
@@ -10,4 +10,4 @@ export const demoFactory = (env: 'WEB' | 'SERVER') => {
 	dialog.clickButton();
 
 	console.log(dialog.open);
-}
+};

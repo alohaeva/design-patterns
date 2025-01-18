@@ -129,7 +129,7 @@ export class HouseDesignBuilder implements HouseBuilder {
 	 */
 	public getResult(): HouseDesign {
 		const houseDesign = this.houseDesign;
-		this.reset()
+		this.reset();
 		return houseDesign;
 	}
 }
@@ -176,7 +176,7 @@ export class CommonHouseBuilder implements HouseBuilder {
 	 */
 	public getResult(): House {
 		const house = this.house;
-		this.reset()
+		this.reset();
 		return house;
 	}
 }
@@ -198,7 +198,7 @@ export class HouseDirector {
 			.buildDoors(1)
 			.buildWindows(2)
 			.buildRoof(true)
-			.buildLabel(label)
+			.buildLabel(label);
 	}
 
 	public constructLuxuryHouse(label: string): void {
@@ -207,7 +207,7 @@ export class HouseDirector {
 			.buildDoors(4)
 			.buildWindows(6)
 			.buildRoof(true)
-			.buildLabel(label)
+			.buildLabel(label);
 	}
 }
 

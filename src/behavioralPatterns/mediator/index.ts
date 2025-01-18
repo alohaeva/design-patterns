@@ -8,7 +8,7 @@ export class Mediator {
 
 	constructor() {}
 
-	public subscribe(event: string, componentFn: (() => void)) {
+	public subscribe(event: string, componentFn: () => void) {
 		if (this.events[event]) {
 			this.events[event].push(componentFn);
 		} else {
@@ -18,7 +18,7 @@ export class Mediator {
 
 	public notify(event: string): void {
 		if (this.events[event]?.length) {
-			this.events[event].forEach(listener => {
+			this.events[event].forEach((listener) => {
 				listener();
 			});
 		}

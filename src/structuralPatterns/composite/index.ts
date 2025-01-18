@@ -53,13 +53,15 @@ export class Folder implements Component {
 	}
 
 	removeComponent(component: Component): void {
-		this.children = this.children.filter(_component => _component !== component);
+		this.children = this.children.filter(
+			(_component) => _component !== component,
+		);
 	}
 
 	display(indent: string): void {
 		console.log(`${indent}${this.name}/`);
 		for (const child of this.children) {
-			child.display(indent + (indent ? indent : "  "));
+			child.display(indent + (indent ? indent : '  '));
 		}
 	}
 }

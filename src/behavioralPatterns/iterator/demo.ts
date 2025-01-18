@@ -1,4 +1,4 @@
-import {WordsCollection} from "./index";
+import { WordsCollection } from './index';
 
 export const demoIterator = () => {
 	const collection = new WordsCollection();
@@ -13,10 +13,9 @@ export const demoIterator = () => {
 		console.log(iterator.next());
 	}
 
-	console.log('');
 	console.log('Reverse traversal:');
 	const reverseIterator = collection.getReverseIterator();
 	while (reverseIterator.valid()) {
 		console.log(reverseIterator.next());
 	}
-}
+};

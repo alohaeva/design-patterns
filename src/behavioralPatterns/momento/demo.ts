@@ -1,4 +1,4 @@
-import {Caretaker, Originator} from "./index";
+import { Caretaker, Originator } from './index';
 
 export const demoMomento = () => {
 	const originator = new Originator(0);
@@ -18,4 +18,4 @@ export const demoMomento = () => {
 	careTaker.showHistory();
 	careTaker.backup();
 	careTaker.showHistory();
-}
+};

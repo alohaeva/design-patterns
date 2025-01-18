@@ -6,26 +6,26 @@ abstract class IRenderStrategy {
 
 class PdfRenderStrategy implements IRenderStrategy {
 	render() {
-		console.log(`${this.constructor.name} render method`)
+		console.log(`${this.constructor.name} render method`);
 	}
 }
 
 class DocxRenderStrategy implements IRenderStrategy {
 	render() {
-		console.log(`${this.constructor.name} render method`)
+		console.log(`${this.constructor.name} render method`);
 	}
 }
 
 class TxtRenderStrategy implements IRenderStrategy {
 	render() {
-		console.log(`${this.constructor.name} render method`)
+		console.log(`${this.constructor.name} render method`);
 	}
 }
 
 export enum StrategyTypes {
 	PDF = 'pdf',
 	DOCX = 'docx',
-	TXT = 'txt'
+	TXT = 'txt',
 }
 
 export class ContextStragegy {
@@ -44,4 +44,3 @@ export class ContextStragegy {
 		this.strategy.render();
 	}
 }
-

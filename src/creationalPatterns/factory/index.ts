@@ -1,10 +1,10 @@
 type ButtonProps = {
-    label: string;
-}
+	label: string;
+};
 
 export enum ButtonTypes {
-    Secondary = 'Secondary',
-    Primary = 'Primary'
+	Secondary = 'Secondary',
+	Primary = 'Primary',
 }
 
 /**
@@ -15,11 +15,11 @@ class Button {
 	label: string;
 	onClickFn?: () => void;
 
-    constructor(props: ButtonProps) {
+	constructor(props: ButtonProps) {
 		this.label = props.label;
 	}
 
-    render(): void {
+	render(): void {
 		throw new Error('Implement Render Button');
 	}
 
@@ -27,9 +27,9 @@ class Button {
 		this.onClickFn = fn;
 	}
 
-    click(): void {
+	click(): void {
 		this.onClickFn?.();
-		console.log(`click ${this.label}`)
+		console.log(`click ${this.label}`);
 	}
 }
 
@@ -37,13 +37,13 @@ class Button {
  * Make all products follow the same interface
  */
 export class ServerButton extends Button {
-    constructor(props: ButtonProps) {
-		super(props)
-    }
+	constructor(props: ButtonProps) {
+		super(props);
+	}
 
-    render() {
-        console.log(`render ${ButtonTypes.Primary} ${this.label}`)
-    }
+	render() {
+		console.log(`render ${ButtonTypes.Primary} ${this.label}`);
+	}
 }
 
 /**
@@ -51,11 +51,11 @@ export class ServerButton extends Button {
  */
 export class WebButton extends Button {
 	constructor(props: ButtonProps) {
-		super(props)
+		super(props);
 	}
 
 	render() {
-		console.log(`render ${ButtonTypes.Secondary} ${this.constructor.name}`)
+		console.log(`render ${ButtonTypes.Secondary} ${this.constructor.name}`);
 	}
 }
 
@@ -117,6 +117,6 @@ export class ServerDialog extends Dialog {
 	 * Override the factory method in the subclasses
 	 */
 	protected createButton(): ServerButton {
-		return new ServerButton({ label: 'ServerDialog button' })
+		return new ServerButton({ label: 'ServerDialog button' });
 	}
 }

@@ -1,4 +1,4 @@
-import { Shape, Rectangle } from "./index";
+import { Shape, Rectangle } from './index';
 
 export const demoPrototype = () => {
 	const shapes: Shape[] = [];

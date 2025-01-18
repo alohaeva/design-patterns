@@ -9,4 +9,4 @@ export const demoBridge = () => {
 
 	const rectangle = new Rectangle(rasterRenderer, 20, 15);
 	rectangle.draw(); // Output: Drawing a rectangle of width 20 and height 15 in RASTER graphics.
-}
+};

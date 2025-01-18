@@ -81,13 +81,13 @@ export class EncryptionDecorator extends DataSourceDecorator {
 	}
 
 	private encrypt(data: string): string {
-		console.log("Encrypting data");
+		console.log('Encrypting data');
 		return `encrypted(${data})`;
 	}
 
 	private decrypt(data: string): string {
-		console.log("Decrypting data");
-		return data.replace("encrypted(", "").replace(")", "");
+		console.log('Decrypting data');
+		return data.replace('encrypted(', '').replace(')', '');
 	}
 }
 
@@ -116,13 +116,13 @@ export class CompressionDecorator extends DataSourceDecorator {
 	}
 
 	private compress(data: string): string {
-		console.log("Compressing data");
+		console.log('Compressing data');
 		return `compressed(${data})`;
 	}
 
 	private decompress(data: string): string {
-		console.log("Decompressing data");
-		return data.replace("compressed(", "").replace(")", "");
+		console.log('Decompressing data');
+		return data.replace('compressed(', '').replace(')', '');
 	}
 }
 

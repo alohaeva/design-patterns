@@ -49,7 +49,7 @@ class BaseEditorState implements EditorState {
 		setTimeout(() => {
 			console.log(`[${this.constructor.name}] end upload image`);
 			editor.changeState(new BaseEditorState());
-		}, 1000)
+		}, 1000);
 	}
 	saveDocument(editor: Editor) {
 		console.log(`[${this.constructor.name}] start save document`);
@@ -97,13 +97,19 @@ class LockedEditorState implements EditorState {
 class SavingEditorState implements EditorState {
 	constructor() {}
 	startEdit(editor: Editor) {
-		console.log(`[${this.constructor.name}]: wait for editor to be in base state`);
+		console.log(
+			`[${this.constructor.name}]: wait for editor to be in base state`,
+		);
 	}
 	endEditing(editor: Editor) {
-		console.log(`[${this.constructor.name}]: wait for editor to be in base state`);
+		console.log(
+			`[${this.constructor.name}]: wait for editor to be in base state`,
+		);
 	}
 	uploadImage(editor: Editor) {
-		console.log(`[${this.constructor.name}]: wait for editor to be in base state`);
+		console.log(
+			`[${this.constructor.name}]: wait for editor to be in base state`,
+		);
 	}
 	saveDocument(editor: Editor) {
 		console.log(`[${this.constructor.name}]: editor is already in saving state`);

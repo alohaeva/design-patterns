@@ -2,11 +2,11 @@ type ShapeSource = {
 	x: number;
 	y: number;
 	color: string;
-}
+};
 
 type RectangleSource = {
-	width: number
-	height: number
+	width: number;
+	height: number;
 } & ShapeSource;
 
 /**
@@ -41,13 +41,13 @@ export class Shape {
 			x: this.x,
 			y: this.y,
 			color: this.color,
-		})
+		});
 	}
 }
 
 export class Rectangle extends Shape {
-	width: number
-	height: number
+	width: number;
+	height: number;
 
 	constructor(source: RectangleSource) {
 		/**

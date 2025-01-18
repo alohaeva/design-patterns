@@ -50,5 +50,3 @@ export class AnotherVisitorInterface implements Visitor {
 		console.log(elementB.constructor.name);
 	}
 }
-
-

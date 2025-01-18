@@ -1,4 +1,4 @@
-import { Component1, Component2, Mediator } from "./index";
+import { Component1, Component2, Mediator } from './index';
 
 export const demoMediator = () => {
 	const mediator = new Mediator();
@@ -8,4 +8,4 @@ export const demoMediator = () => {
 
 	component1.makePublishAction();
 	component2.makePublishAction();
-}
+};

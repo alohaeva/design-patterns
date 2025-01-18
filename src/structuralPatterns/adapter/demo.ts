@@ -5,5 +5,5 @@ export const demoAdapter = () => {
 	const printerAdapter = new PrinterAdapter(legacyPrinter);
 	const modernClient = new ModernClient(printerAdapter);
 
-	modernClient.printMessage("Hello, world!");
-}
+	modernClient.printMessage('Hello, world!');
+};

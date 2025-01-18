@@ -1,4 +1,4 @@
-import {Editor} from "./index";
+import { Editor } from './index';
 
 export const demoState = () => {
 	const editor = new Editor();
@@ -20,4 +20,4 @@ export const demoState = () => {
 	editor.uploadImage();
 	editor.startEdit();
 	editor.endEditing();
-}
+};

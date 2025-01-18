@@ -1,16 +1,16 @@
-import {generateRandomId} from "../../utils/generateRandomId";
+import { generateRandomId } from '../../utils/generateRandomId';
 
 type ProductData = {
 	price: number;
 	discount: number;
 	name: string;
 	description: string;
-}
+};
 
 abstract class IProduct {
 	productId: string;
 	price: number;
-	discount: number
+	discount: number;
 	finalPrice: number;
 	name: string;
 	description: string;
@@ -57,7 +57,7 @@ class IOrderBucket {
 	}
 	makePurchase() {
 		throw Error('You must implement this method');
-	};
+	}
 }
 
 export class OrderBucket extends IOrderBucket {

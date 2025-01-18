@@ -1,5 +1,5 @@
 abstract class ISubject {
-	abstract state: any
+	abstract state: any;
 	protected constructor() {}
 	abstract register(observer: IObserver): void;
 	abstract unregister(observer: IObserver): void;
@@ -11,7 +11,7 @@ abstract class ISubject {
 abstract class IObserver {
 	abstract subject: ISubject;
 	abstract name: string;
-	abstract state: any
+	abstract state: any;
 	protected constructor() {}
 	abstract update(): void;
 }
@@ -21,14 +21,16 @@ export class Observer implements IObserver {
 	name: string;
 	state: any;
 
-	constructor({ subject, name }: { subject: ISubject, name: string }) {
+	constructor({ subject, name }: { subject: ISubject; name: string }) {
 		this.subject = subject;
 		this.name = name;
 	}
 	update() {
 		this.state = this.subject.getState();
 
-		console.log(`${this.constructor.name} with name '${this.name}' has updated state with value '${this.state}'`)
+		console.log(
+			`${this.constructor.name} with name '${this.name}' has updated state with value '${this.state}'`,
+		);
 	}
 }
 
@@ -44,7 +46,7 @@ export class Subject implements ISubject {
 		this.observers.push(observer);
 	}
 	unregister(observer: IObserver) {
-		this.observers = this.observers.filter(_observer => _observer !== observer);
+		this.observers = this.observers.filter((_observer) => _observer !== observer);
 	}
 	setState(newState: any) {
 		this.state = newState;
@@ -53,6 +55,6 @@ export class Subject implements ISubject {
 		return this.state;
 	}
 	notify() {
-		this.observers.forEach(obs => obs.update());
+		this.observers.forEach((obs) => obs.update());
 	}
 }

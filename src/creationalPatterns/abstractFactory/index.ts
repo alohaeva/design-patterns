@@ -87,14 +87,14 @@ export class SamsungDevicesFactory implements DevicesFactory {
 export class Application {
 	factory: DevicesFactory;
 
-	constructor (factory: DevicesFactory) {
-		this.factory = factory
+	constructor(factory: DevicesFactory) {
+		this.factory = factory;
 	}
 
 	produce() {
 		return {
 			phone: this.factory.createSmartphone(),
 			tablet: this.factory.createTablet(),
-		}
+		};
 	}
 }

@@ -45,9 +45,7 @@ class AlphabeticalOrderIterator implements Iterator<string> {
 	}
 
 	public rewind() {
-		this.position = this.reverse ?
-			this.collection.getCount() - 1 :
-			0;
+		this.position = this.reverse ? this.collection.getCount() - 1 : 0;
 	}
 
 	public current(): string {

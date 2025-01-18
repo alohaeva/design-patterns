@@ -1,4 +1,4 @@
-import { CommonHouseBuilder, HouseDesignBuilder, HouseDirector } from "./index";
+import { CommonHouseBuilder, HouseDesignBuilder, HouseDirector } from './index';
 
 export const demoBuilder = () => {
 	const productsMap = new Map<string, any>();
@@ -26,4 +26,4 @@ export const demoBuilder = () => {
 	for (const [_, value] of productsMap) {
 		console.log(value.label, value.getDescription());
 	}
-}
+};

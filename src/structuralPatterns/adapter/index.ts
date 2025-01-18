@@ -51,7 +51,9 @@ export class PrinterAdapter implements ClientPrinterInterface {
 		/**
 		 * Adapt the client's method to work with the incompatible service
 		 */
-		console.log("Adapter in action: translating ModernClient request to LegacyPrinterService method.");
+		console.log(
+			'Adapter in action: translating ModernClient request to LegacyPrinterService method.',
+		);
 		this.legacyPrinterService.printText(message);
 	}
 }
@@ -60,5 +62,3 @@ export class PrinterAdapter implements ClientPrinterInterface {
  * Step 6: Client usage via the adapter
  * The client only interacts with the `ClientPrinterInterface`
  */
-
-

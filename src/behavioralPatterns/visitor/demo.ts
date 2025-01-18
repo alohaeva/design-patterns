@@ -1,4 +1,9 @@
-import {AnotherVisitorInterface, VisitingElementA, VisitingElementB, VisitorInterface} from "./index";
+import {
+	AnotherVisitorInterface,
+	VisitingElementA,
+	VisitingElementB,
+	VisitorInterface,
+} from './index';
 
 export const demoVisitor = () => {
 	const visitor = new VisitorInterface({});
@@ -10,4 +15,4 @@ export const demoVisitor = () => {
 	elementA.accept(anotherVisitor);
 	elementB.accept(visitor);
 	elementB.accept(anotherVisitor);
-}
+};

@@ -16,7 +16,9 @@ export class VectorRenderer implements Renderer {
 	}
 
 	renderRectangle(width: number, height: number): void {
-		console.log(`Drawing a rectangle of width ${width} and height ${height} in VECTOR graphics.`);
+		console.log(
+			`Drawing a rectangle of width ${width} and height ${height} in VECTOR graphics.`,
+		);
 	}
 }
 
@@ -29,7 +31,9 @@ export class RasterRenderer implements Renderer {
 	}
 
 	renderRectangle(width: number, height: number): void {
-		console.log(`Drawing a rectangle of width ${width} and height ${height} in RASTER graphics.`);
+		console.log(
+			`Drawing a rectangle of width ${width} and height ${height} in RASTER graphics.`,
+		);
 	}
 }
 

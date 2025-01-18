@@ -2,7 +2,7 @@ class Memento {
 	constructor(private readonly state: number) {}
 	getState() {
 		return this.state;
-	};
+	}
 }
 
 export class Originator {

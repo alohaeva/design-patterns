@@ -1,51 +1,71 @@
-import {demoFactory} from "./creationalPatterns/factory/demo";
-import {demoSingleton} from "./creationalPatterns/singleton/demo";
-import {demoPrototype} from "./creationalPatterns/prototype/demo";
-import {demoAbstractFactory} from "./creationalPatterns/abstractFactory/demo";
-import { demoBuilder } from "./creationalPatterns/builder/demo";
+import { demoFactory } from './creationalPatterns/factory/demo';
+import { demoSingleton } from './creationalPatterns/singleton/demo';
+import { demoPrototype } from './creationalPatterns/prototype/demo';
+import { demoAbstractFactory } from './creationalPatterns/abstractFactory/demo';
+import { demoBuilder } from './creationalPatterns/builder/demo';
 
 // structural
-import {demoAdapter} from "./structuralPatterns/adapter/demo";
-import { demoBridge } from "./structuralPatterns/bridge/demo";
-import { demoComposite } from "./structuralPatterns/composite/demo";
+import { demoAdapter } from './structuralPatterns/adapter/demo';
+import { demoBridge } from './structuralPatterns/bridge/demo';
+import { demoComposite } from './structuralPatterns/composite/demo';
+import { demoFacade } from './structuralPatterns/facade/demo';
+import { demoDecorator } from './structuralPatterns/decorator/demo';
 
 // behavioural
-import {demoVisitor} from "./behavioralPatterns/visitor/demo";
-import {demoTemplateMethod} from "./behavioralPatterns/templateMethod/demo";
-import {demoStrategy} from "./behavioralPatterns/strategy/demo";
-import {demoState} from "./behavioralPatterns/state/demo";
-import {demoObserver} from "./behavioralPatterns/observer/demo";
-import {demoMomento} from "./behavioralPatterns/momento/demo";
-import {demoMediator} from "./behavioralPatterns/mediator/demo";
-import {demoIterator} from "./behavioralPatterns/iterator/demo";
-import {demoDecorator} from "./structuralPatterns/decorator/demo";
+import { demoVisitor } from './behavioralPatterns/visitor/demo';
+import { demoTemplateMethod } from './behavioralPatterns/templateMethod/demo';
+import { demoStrategy } from './behavioralPatterns/strategy/demo';
+import { demoState } from './behavioralPatterns/state/demo';
+import { demoObserver } from './behavioralPatterns/observer/demo';
+import { demoMomento } from './behavioralPatterns/momento/demo';
+import { demoMediator } from './behavioralPatterns/mediator/demo';
+import { demoIterator } from './behavioralPatterns/iterator/demo';
 
 /**
  * Demos of Creational Design Patterns
  */
+// console.log('----- Singleton -----');
 // demoSingleton();
+// console.log('----- Prototype -----');
 // demoPrototype();
-// demoFactory("WEB");
-// demoFactory("SERVER");
+// console.log('----- Factory -----');
+// demoFactory('WEB');
+// demoFactory('SERVER');
+// console.log('----- Abstract Factory -----');
 // demoAbstractFactory('Mac');
 // demoAbstractFactory('Windows');
+// console.log('----- Builder -----');
 // demoBuilder();
 
 /**
  * Demos of Structural Design Patterns
  */
-// demoAdapter()
-// demoBridge()
+// console.log('----- Adapter -----');
+// demoAdapter();
+// console.log('----- Bridge -----');
+// demoBridge();
+// console.log('----- Composite -----');
 // demoComposite();
-demoDecorator({ encryption: true, compression: true })
+// console.log('----- Decorator -----');
+// demoDecorator({ encryption: true, compression: true });
+console.log('----- Facade -----');
+demoFacade();
 /**
  * Demos of Behavioural Design Patterns
  */
+// console.log('----- Visitor -----');
 // demoVisitor();
+// console.log('----- Template Method -----');
 // demoTemplateMethod();
+// console.log('----- Strategy -----');
 // demoStrategy();
+// console.log('----- State -----');
 // demoState();
-// demoObserver()
-// demoMomento()
+// console.log('----- Observer -----');
+// demoObserver();
+// console.log('----- Momento -----');
+// demoMomento();
+// console.log('----- Mediator -----');
 // demoMediator();
-// demoIterator()
+// console.log('----- Iterator -----');
+// demoIterator();

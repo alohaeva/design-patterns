@@ -20,6 +20,7 @@ import { demoObserver } from './behavioralPatterns/observer/demo';
 import { demoMomento } from './behavioralPatterns/momento/demo';
 import { demoMediator } from './behavioralPatterns/mediator/demo';
 import { demoIterator } from './behavioralPatterns/iterator/demo';
+import { demoFlyweight } from './structuralPatterns/flyweight/demo';
 
 /**
  * Demos of Creational Design Patterns
@@ -48,8 +49,10 @@ import { demoIterator } from './behavioralPatterns/iterator/demo';
 // demoComposite();
 // console.log('----- Decorator -----');
 // demoDecorator({ encryption: true, compression: true });
-console.log('----- Facade -----');
-demoFacade();
+// console.log('----- Facade -----');
+// demoFacade();
+console.log('----- Flywieght -----');
+demoFlyweight();
 /**
  * Demos of Behavioural Design Patterns
  */

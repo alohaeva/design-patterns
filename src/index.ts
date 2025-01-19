@@ -21,6 +21,7 @@ import { demoMomento } from './behavioralPatterns/momento/demo';
 import { demoMediator } from './behavioralPatterns/mediator/demo';
 import { demoIterator } from './behavioralPatterns/iterator/demo';
 import { demoFlyweight } from './structuralPatterns/flyweight/demo';
+import { demoProxy } from './structuralPatterns/proxy/demo';
 
 /**
  * Demos of Creational Design Patterns
@@ -47,12 +48,14 @@ import { demoFlyweight } from './structuralPatterns/flyweight/demo';
 // demoBridge();
 // console.log('----- Composite -----');
 // demoComposite();
-// console.log('----- Decorator -----');
+// console.log('\n----- Decorator -----');
 // demoDecorator({ encryption: true, compression: true });
-// console.log('----- Facade -----');
+// console.log('\n----- Facade -----');
 // demoFacade();
-console.log('----- Flywieght -----');
-demoFlyweight();
+// console.log('\n----- Flywieght -----');
+// demoFlyweight();
+console.log('\n----- Proxy -----');
+demoProxy();
 /**
  * Demos of Behavioural Design Patterns
  */

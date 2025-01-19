@@ -22,6 +22,7 @@ import { demoMediator } from './behavioralPatterns/mediator/demo';
 import { demoIterator } from './behavioralPatterns/iterator/demo';
 import { demoFlyweight } from './structuralPatterns/flyweight/demo';
 import { demoProxy } from './structuralPatterns/proxy/demo';
+import { demoChainOfResponsibility } from './behavioralPatterns/chainOfResponsibility/demo';
 
 /**
  * Demos of Creational Design Patterns
@@ -54,12 +55,14 @@ import { demoProxy } from './structuralPatterns/proxy/demo';
 // demoFacade();
 // console.log('\n----- Flywieght -----');
 // demoFlyweight();
-console.log('\n----- Proxy -----');
-demoProxy();
+// console.log('\n----- Proxy -----');
+// demoProxy();
 /**
  * Demos of Behavioural Design Patterns
  */
-// console.log('----- Visitor -----');
+console.log('\n----- Chain Of Responsibility -----');
+demoChainOfResponsibility();
+// console.log('\n----- Visitor -----');
 // demoVisitor();
 // console.log('----- Template Method -----');
 // demoTemplateMethod();

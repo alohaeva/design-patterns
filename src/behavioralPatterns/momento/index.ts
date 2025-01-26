@@ -1,5 +1,6 @@
 class Memento {
 	constructor(private readonly state: number) {}
+
 	getState() {
 		return this.state;
 	}
@@ -7,40 +8,78 @@ class Memento {
 
 export class Originator {
 	constructor(private state: number) {}
-	createState(): Memento {
+
+	getState() {
+		return this.state;
+	}
+
+	save(): Memento {
 		return new Memento(this.state);
 	}
 	setState(newState: number) {
+		console.log(`Setting state to: ${newState}`);
 		this.state = newState;
 	}
-	restoreState(memento: Memento): void {
+	restore(memento: Memento): void {
 		this.state = memento.getState();
 	}
 }
 
 export class Caretaker {
 	private mementos: Memento[] = [];
-	constructor(private originator: Originator) {}
+	private currentIndex: number = -1; // Tracks the current state index.
+
+	constructor(private originator: Originator) {
+		this.backup()
+	}
 
 	public backup(): void {
-		this.mementos.push(this.originator.createState());
+		// Remove any redo history when saving a new state
+		this.mementos = this.mementos.slice(0, this.currentIndex + 1);
+
+		const state = this.originator.save()
+
+		console.log(`Backing up state: ${state.getState()}`);
+
+		this.mementos.push(state);
+		this.currentIndex++;
 	}
 
 	public undo(): void {
-		if (!this.mementos.length) {
-			return;
-		}
-		const memento = this.mementos.pop();
+		if (this.currentIndex > 0) {
+			this.currentIndex--;
 
-		if (memento) {
-			console.log(`Caretaker: Restoring state to: ${memento.getState()}`);
-			this.originator.restoreState(memento);
+			const state = this.mementos[this.currentIndex];
+
+			console.log(`Restoring state to: ${state.getState()}`);
+
+			this.originator.restore(state);
+		} else {
+			console.log("No states to undo.");
+		}
+	}
+
+	public redo(): void {
+		if (this.currentIndex < this.mementos.length - 1) {
+			this.currentIndex++;
+
+			const state = this.mementos[this.currentIndex];
+
+			console.log(`Restoring state to: ${state.getState()}`);
+
+			this.originator.restore(state);
+		} else {
+			console.log("No states to redo.");
 		}
 	}
 
 	public showHistory(): void {
+		let history = [];
+
 		for (const memento of this.mementos) {
-			console.log(memento.getState());
+			history.push(memento.getState());
 		}
+
+		console.log(`Current history: ${history.join(', ')}`);
 	}
 }

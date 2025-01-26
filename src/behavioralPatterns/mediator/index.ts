@@ -29,21 +29,33 @@ abstract class BaseComponent {
 	abstract mediator: Mediator;
 	protected constructor() {}
 	abstract makeSubscribeAction(): void;
-	abstract makePublishAction(): void;
+	abstract makePublishAction(event: string): void;
+	abstract subscribeToEvent(
+		event: string,
+		action: (...args: unknown[]) => void,
+	): void;
 }
 
 export class Component1 implements BaseComponent {
 	mediator: Mediator;
 	constructor(mediator: Mediator) {
 		this.mediator = mediator;
-		this.mediator.subscribe('eventA', this.makeSubscribeAction.bind(this));
 	}
+
+	subscribeToEvent(event: string, action: (...args: unknown[]) => void) {
+		console.log(`Subscribe to event (${event}) in ${this.constructor.name}`);
+		this.mediator.subscribe(event, action);
+	}
+
 	public makeSubscribeAction() {
 		console.log(`React to event in ${this.constructor.name}`);
 	}
-	public makePublishAction() {
-		console.log(`Publish event to mediator from ${this.constructor.name}`);
-		this.mediator.notify('eventB');
+
+	public makePublishAction(event: string) {
+		console.log(
+			`Publish event (${event}) to mediator from ${this.constructor.name}`,
+		);
+		this.mediator.notify(event);
 	}
 }
 
@@ -51,13 +63,21 @@ export class Component2 implements BaseComponent {
 	mediator: Mediator;
 	constructor(mediator: Mediator) {
 		this.mediator = mediator;
-		this.mediator.subscribe('eventB', this.makeSubscribeAction.bind(this));
 	}
+
+	subscribeToEvent(event: string, action: (...args: unknown[]) => void) {
+		console.log(`Subscribe to event (${event}) in ${this.constructor.name}`);
+		this.mediator.subscribe(event, action);
+	}
+
 	public makeSubscribeAction() {
 		console.log(`React to event in ${this.constructor.name}`);
 	}
-	public makePublishAction() {
-		console.log(`Publish event to mediator from ${this.constructor.name}`);
-		this.mediator.notify('eventA');
+
+	public makePublishAction(event: string) {
+		console.log(
+			`Publish event (${event}) to mediator from ${this.constructor.name}`,
+		);
+		this.mediator.notify(event);
 	}
 }

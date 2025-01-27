@@ -1,60 +1,63 @@
-abstract class ISubject {
-	abstract state: any;
-	protected constructor() {}
-	abstract register(observer: IObserver): void;
-	abstract unregister(observer: IObserver): void;
-	abstract setState(newState: any): void;
-	abstract getState(): any;
-	abstract notify(): void;
+interface ISubject {
+	observers: IObserver[];
+
+	register(observer: IObserver): void;
+	unregister(observer: IObserver): void;
+	notify(state: any): void;
 }
 
-abstract class IObserver {
-	abstract subject: ISubject;
-	abstract name: string;
-	abstract state: any;
-	protected constructor() {}
-	abstract update(): void;
-}
-
-export class Observer implements IObserver {
-	subject: ISubject;
-	name: string;
-	state: any;
-
-	constructor({ subject, name }: { subject: ISubject; name: string }) {
-		this.subject = subject;
-		this.name = name;
-	}
-	update() {
-		this.state = this.subject.getState();
-
-		console.log(
-			`${this.constructor.name} with name '${this.name}' has updated state with value '${this.state}'`,
-		);
-	}
+interface IObserver {
+	update(newState: any): void;
 }
 
 export class Subject implements ISubject {
-	state: string;
 	observers: IObserver[];
 
 	constructor() {
-		this.state = 'state';
 		this.observers = [];
 	}
+
 	register(observer: IObserver) {
 		this.observers.push(observer);
 	}
+
 	unregister(observer: IObserver) {
 		this.observers = this.observers.filter((_observer) => _observer !== observer);
 	}
-	setState(newState: any) {
-		this.state = newState;
+
+	notify(state: number) {
+		this.observers.forEach((obs) => obs.update(state));
 	}
+}
+
+export class WeatherStation extends Subject {
+	state: number  = 0;
+
+	constructor() {
+		super();
+	}
+
+	setState(newState: number) {
+		console.log(`${this.constructor.name}: Temperature changed to ${newState}`);
+		this.state = newState;
+		this.notify(newState);
+	}
+
 	getState() {
 		return this.state;
 	}
-	notify() {
-		this.observers.forEach((obs) => obs.update());
+}
+
+// Concrete Observer 1
+export class PhoneDisplay implements IObserver {
+	update(temp: any) {
+		console.log(`PhoneDisplay: The temperature is now ${temp}°C`);
+	}
+}
+
+// Concrete Observer 2
+export class ComputerDisplay implements IObserver {
+	update(temp: any) {
+		console.log(`ComputerDisplay: The temperature is now ${temp}°C`);
 	}
 }

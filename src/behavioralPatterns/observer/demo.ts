@@ -1,21 +1,20 @@
-import { Observer, Subject } from './index';
+import { PhoneDisplay, ComputerDisplay, WeatherStation } from './index';
 
 export const demoObserver = () => {
-	const subject = new Subject();
-	const observer = new Observer({ subject: subject, name: 'Observer test' });
-	const observer2 = new Observer({
-		subject: subject,
-		name: 'Some another Observer test',
-	});
+	// Usage Example
+	const weatherStation = new WeatherStation();
 
-	subject.register(observer);
-	subject.register(observer2);
+	const phoneDisplay = new PhoneDisplay();
+	const computerDisplay = new ComputerDisplay();
 
-	subject.setState('new state');
-	subject.notify();
+	// Attach observers to the subject
+	weatherStation.register(phoneDisplay);
+	weatherStation.register(computerDisplay);
 
-	subject.unregister(observer);
+	// Change the temperature and notify observers
+	weatherStation.setState(25);
 
-	subject.setState('Hello, world');
-	subject.notify();
+	// Detach one observer
+	weatherStation.unregister(phoneDisplay);
+	weatherStation.setState(35);
 };

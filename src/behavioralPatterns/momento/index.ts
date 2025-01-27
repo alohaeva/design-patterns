@@ -30,14 +30,14 @@ export class Caretaker {
 	private currentIndex: number = -1; // Tracks the current state index.
 
 	constructor(private originator: Originator) {
-		this.backup()
+		this.backup();
 	}
 
 	public backup(): void {
 		// Remove any redo history when saving a new state
 		this.mementos = this.mementos.slice(0, this.currentIndex + 1);
 
-		const state = this.originator.save()
+		const state = this.originator.save();
 
 		console.log(`Backing up state: ${state.getState()}`);
 
@@ -55,7 +55,7 @@ export class Caretaker {
 
 			this.originator.restore(state);
 		} else {
-			console.log("No states to undo.");
+			console.log('No states to undo.');
 		}
 	}
 
@@ -69,7 +69,7 @@ export class Caretaker {
 
 			this.originator.restore(state);
 		} else {
-			console.log("No states to redo.");
+			console.log('No states to redo.');
 		}
 	}
 

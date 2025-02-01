@@ -31,7 +31,7 @@ export class Subject implements ISubject {
 }
 
 export class WeatherStation extends Subject {
-	state: number  = 0;
+	state: number = 0;
 
 	constructor() {
 		super();

@@ -1,23 +1,18 @@
-import { Editor } from './index';
+import { VendingMachine } from './index';
 
 export const demoState = () => {
-	const editor = new Editor();
-	editor.startEdit();
-	editor.startEdit();
-	editor.endEditing();
+	const vendingMachine = new VendingMachine();
 
-	editor.startEdit();
-	editor.uploadImage();
-	editor.saveDocument();
-	editor.endEditing();
+	// Idle State
+	vendingMachine.selectItem(); // "You need to insert a coin first."
+	vendingMachine.dispenseItem(); // "Insert a coin and select an item first."
 
-	editor.uploadImage();
-	editor.startEdit();
-	editor.saveDocument();
-	editor.endEditing();
+	// Insert Coin
+	vendingMachine.insertCoin(); // "Coin inserted. You can now select an item."
 
-	editor.saveDocument();
-	editor.uploadImage();
-	editor.startEdit();
-	editor.endEditing();
+	// Select Item
+	vendingMachine.selectItem(); // "Item selected. Dispensing item..."
+
+	// Dispense Item
+	vendingMachine.dispenseItem(); // "Item dispensed. Returning to idle state."
 };

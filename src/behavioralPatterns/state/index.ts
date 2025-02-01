@@ -1,117 +1,103 @@
-export class Editor {
-	private state: EditorState;
+// Define the State interface
+interface VendingMachineState {
+	insertCoin(): void;
+	selectItem(): void;
+	dispenseItem(): void;
+}
+
+// Idle State Implementation
+class IdleState implements VendingMachineState {
+	private readonly vendingMachine: VendingMachine;
+
+	constructor(vendingMachine: VendingMachine) {
+		this.vendingMachine = vendingMachine;
+	}
+
+	insertCoin(): void {
+		console.log('Coin inserted. You can now select an item.');
+		this.vendingMachine.setState(new HasCoinState(this.vendingMachine));
+	}
+
+	selectItem(): void {
+		console.log('You need to insert a coin first.');
+	}
+
+	dispenseItem(): void {
+		console.log('Insert a coin and select an item first.');
+	}
+}
+
+// Has Coin State Implementation
+class HasCoinState implements VendingMachineState {
+	private readonly vendingMachine: VendingMachine;
+
+	constructor(vendingMachine: VendingMachine) {
+		this.vendingMachine = vendingMachine;
+	}
+
+	insertCoin(): void {
+		console.log('Coin already inserted. Please select an item.');
+	}
+
+	selectItem(): void {
+		console.log('Item selected. Dispensing item...');
+		this.vendingMachine.setState(new DispenseItemState(this.vendingMachine));
+	}
+
+	dispenseItem(): void {
+		console.log('You need to select an item first.');
+	}
+}
+
+// Dispense Item State Implementation
+class DispenseItemState implements VendingMachineState {
+	private readonly vendingMachine: VendingMachine;
+
+	constructor(vendingMachine: VendingMachine) {
+		this.vendingMachine = vendingMachine;
+	}
+
+	insertCoin(): void {
+		console.log('Please wait, already dispensing an item.');
+	}
+
+	selectItem(): void {
+		console.log('Already dispensing an item.');
+	}
+
+	dispenseItem(): void {
+		console.log('Item dispensed. Returning to idle state.');
+		this.vendingMachine.setState(new IdleState(this.vendingMachine));
+	}
+}
+
+// Context Class
+export class VendingMachine {
+	private currentState: VendingMachineState;
 
 	constructor() {
-		this.state = new BaseEditorState();
+		// Set the initial state
+		this.currentState = new IdleState(this);
 	}
 
-	changeState(newState: EditorState) {
-		this.state = newState;
+	setState(state: VendingMachineState): void {
+		this.currentState = state;
 	}
 
-	endEditing() {
-		this.state.endEditing(this);
+	getState(): VendingMachineState {
+		return this.currentState;
 	}
 
-	startEdit() {
-		this.state.startEdit(this);
+	// State-delegating methods
+	insertCoin(): void {
+		this.currentState.insertCoin();
 	}
 
-	uploadImage() {
-		this.state.uploadImage(this);
+	selectItem(): void {
+		this.currentState.selectItem();
 	}
 
-	saveDocument() {
-		this.state.saveDocument(this);
-	}
-}
-
-abstract class EditorState {
-	protected constructor() {}
-	abstract startEdit(editor: Editor): void;
-	abstract endEditing(editor: Editor): void;
-	abstract uploadImage(editor: Editor): void;
-	abstract saveDocument(editor: Editor): void;
-}
-
-class BaseEditorState implements EditorState {
-	constructor() {}
-	startEdit(editor: Editor) {
-		console.log(`[${this.constructor.name}] start edit`);
-		editor.changeState(new EditingEditorState());
-	}
-	endEditing(editor: Editor) {
-		console.log(`[${this.constructor.name}]: editor is already in base state`);
-	}
-	uploadImage(editor: Editor) {
-		console.log(`[${this.constructor.name}] start upload image`);
-		editor.changeState(new LockedEditorState());
-		setTimeout(() => {
-			console.log(`[${this.constructor.name}] end upload image`);
-			editor.changeState(new BaseEditorState());
-		}, 1000);
-	}
-	saveDocument(editor: Editor) {
-		console.log(`[${this.constructor.name}] start save document`);
-		editor.changeState(new SavingEditorState());
-		setTimeout(() => {
-			console.log(`[${this.constructor.name}] end save document`);
-			editor.changeState(new BaseEditorState());
-		}, 1000);
-	}
-}
-
-class EditingEditorState implements EditorState {
-	constructor() {}
-	startEdit(editor: Editor) {
-		console.log(`[${this.constructor.name}]: editor is already in editing state`);
-	}
-	endEditing(editor: Editor) {
-		console.log(`[${this.constructor.name}] end edit`);
-		editor.changeState(new BaseEditorState());
-	}
-	uploadImage(editor: Editor) {
-		console.log(`[${this.constructor.name}]: end editing before upload image`);
-	}
-	saveDocument(editor: Editor) {
-		console.log(`[${this.constructor.name}]: end editing before save document`);
-	}
-}
-
-class LockedEditorState implements EditorState {
-	constructor() {}
-	startEdit(editor: Editor) {
-		console.log(`[${this.constructor.name}]: wait for editor to be unlocked`);
-	}
-	endEditing(editor: Editor) {
-		console.log(`[${this.constructor.name}]: wait for editor to be unlocked`);
-	}
-	uploadImage(editor: Editor) {
-		console.log(`[${this.constructor.name}]: editor is already in locked state`);
-	}
-	saveDocument(editor: Editor) {
-		console.log(`[${this.constructor.name}]: wait for editor to be unlocked`);
-	}
-}
-
-class SavingEditorState implements EditorState {
-	constructor() {}
-	startEdit(editor: Editor) {
-		console.log(
-			`[${this.constructor.name}]: wait for editor to be in base state`,
-		);
-	}
-	endEditing(editor: Editor) {
-		console.log(
-			`[${this.constructor.name}]: wait for editor to be in base state`,
-		);
-	}
-	uploadImage(editor: Editor) {
-		console.log(
-			`[${this.constructor.name}]: wait for editor to be in base state`,
-		);
-	}
-	saveDocument(editor: Editor) {
-		console.log(`[${this.constructor.name}]: editor is already in saving state`);
+	dispenseItem(): void {
+		this.currentState.dispenseItem();
 	}
 }

@@ -1,11 +1,19 @@
-import { ContextStrategy, StrategyTypes } from './index';
+import {
+	ContextStrategy,
+	PdfRenderStrategy,
+	TxtRenderStrategy,
+	DocxRenderStrategy,
+} from './index';
 
 export const demoStrategy = () => {
-	const pdfRender = new ContextStrategy(StrategyTypes.PDF);
-	const docxRender = new ContextStrategy(StrategyTypes.DOCX);
-	const txtRender = new ContextStrategy(StrategyTypes.TXT);
+	const pdfStrategy = new PdfRenderStrategy();
+	const textStrategy = new TxtRenderStrategy();
+	const docStrategy = new DocxRenderStrategy();
+	const renderContext = new ContextStrategy(pdfStrategy);
 
-	pdfRender.render();
-	docxRender.render();
-	txtRender.render();
+	renderContext.render();
+	renderContext.setStrategy(textStrategy);
+	renderContext.render();
+	renderContext.setStrategy(docStrategy);
+	renderContext.render();
 };

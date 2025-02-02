@@ -1,22 +1,29 @@
+/**
+ * Declare the strategy interface common to all variants of the algorithm
+ */
 abstract class IRenderStrategy {
 	protected constructor() {}
 
 	abstract render(): void;
 }
 
-class PdfRenderStrategy implements IRenderStrategy {
+/**
+ * Implement all algorithms into their own classes.
+ * They should all implement the strategy interface
+ */
+export class PdfRenderStrategy implements IRenderStrategy {
 	render() {
 		console.log(`${this.constructor.name} render method`);
 	}
 }
 
-class DocxRenderStrategy implements IRenderStrategy {
+export class DocxRenderStrategy implements IRenderStrategy {
 	render() {
 		console.log(`${this.constructor.name} render method`);
 	}
 }
 
-class TxtRenderStrategy implements IRenderStrategy {
+export class TxtRenderStrategy implements IRenderStrategy {
 	render() {
 		console.log(`${this.constructor.name} render method`);
 	}
@@ -29,17 +36,25 @@ export enum StrategyTypes {
 }
 
 export class ContextStrategy {
+	/**
+	 * add a field for storing a reference to a strategy object
+	 */
 	strategy: IRenderStrategy;
-	private strategies = {
-		[StrategyTypes.PDF]: new PdfRenderStrategy(),
-		[StrategyTypes.DOCX]: new DocxRenderStrategy(),
-		[StrategyTypes.TXT]: new TxtRenderStrategy(),
-	};
 
-	constructor(strategyType: StrategyTypes) {
-		this.strategy = this.strategies[strategyType];
+	constructor(strategy: IRenderStrategy) {
+		this.strategy = strategy;
 	}
 
+	/**
+	 * Provide a setter for replacing values of that field
+	 */
+	setStrategy(strategy: IRenderStrategy) {
+		this.strategy = strategy;
+	}
+
+	/**
+	 *  identify an algorithm that’s prone to frequent changes
+	 */
 	render() {
 		this.strategy.render();
 	}

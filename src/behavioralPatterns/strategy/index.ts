@@ -28,7 +28,7 @@ export enum StrategyTypes {
 	TXT = 'txt',
 }
 
-export class ContextStragegy {
+export class ContextStrategy {
 	strategy: IRenderStrategy;
 	private strategies = {
 		[StrategyTypes.PDF]: new PdfRenderStrategy(),

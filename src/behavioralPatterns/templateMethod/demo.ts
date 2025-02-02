@@ -6,7 +6,7 @@ export const demoTemplateMethod = () => {
 	const csvProcessor = new CSVProcessor();
 	csvProcessor.process(join(__dirname, './data.csv'));
 
-	console.log("===");
+	console.log('===');
 
 	const jsonProcessor = new JSONProcessor();
 	jsonProcessor.process(join(__dirname, './data.json'));

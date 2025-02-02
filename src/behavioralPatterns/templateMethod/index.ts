@@ -1,10 +1,10 @@
 // Abstract class representing a DataProcessor
-import * as fs from "node:fs";
-import * as parser from "json-2-csv";
+import * as fs from 'node:fs';
+import * as parser from 'json-2-csv';
 import { faker } from '@faker-js/faker';
 
 type Employee = {
-	ID: number,
+	ID: number;
 	Name: string;
 	Position: string;
 	Department: string;
@@ -30,7 +30,7 @@ abstract class DataProcessor {
 	// Concrete method: Can be shared by all subclasses
 	protected saveData(path: string, data: string): void {
 		fs.writeFileSync(path, data, { encoding: 'utf-8' });
-		console.log("Data saved successfully!");
+		console.log('Data saved successfully!');
 	}
 }
 
@@ -38,13 +38,13 @@ abstract class DataProcessor {
 export class CSVProcessor extends DataProcessor {
 	// Implementing the readData method
 	protected readData(filePath: string): string {
-		console.log("Reading data from a CSV file...");
+		console.log('Reading data from a CSV file...');
 		return fs.readFileSync(filePath, { encoding: 'utf-8' });
 	}
 
 	// Implementing the processData method
 	protected processData(data: string): string {
-		console.log("Processing CSV data...");
+		console.log('Processing CSV data...');
 
 		const json = parser.csv2json(data);
 
@@ -66,13 +66,13 @@ export class CSVProcessor extends DataProcessor {
 export class JSONProcessor extends DataProcessor {
 	// Implementing the readData method
 	protected readData(filePath: string): string {
-		console.log("Reading data from a JSON file...");
+		console.log('Reading data from a JSON file...');
 		return fs.readFileSync(filePath, { encoding: 'utf-8' });
 	}
 
 	// Implementing the processData method
 	protected processData(data: string): string {
-		console.log("Processing JSON data...");
+		console.log('Processing JSON data...');
 		return data;
 	}
 }

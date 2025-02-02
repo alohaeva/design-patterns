@@ -1,18 +1,27 @@
 import {
-	AnotherVisitorInterface,
-	VisitingElementA,
-	VisitingElementB,
-	VisitorInterface,
+	ItemElement,
+	Electronics,
+	Groceries,
+	PercentageDiscountVisitor,
+	FlatDiscountVisitor,
 } from './index';
 
 export const demoVisitor = () => {
-	const visitor = new VisitorInterface({});
-	const anotherVisitor = new AnotherVisitorInterface({});
-	const elementA = new VisitingElementA({});
-	const elementB = new VisitingElementB({});
+	// Create items
+	const items: ItemElement[] = [
+		new Electronics('Laptop', 1500),
+		new Electronics('Smartphone', 800),
+		new Groceries('Apples', 20),
+		new Groceries('Milk', 5),
+	];
 
-	elementA.accept(visitor);
-	elementA.accept(anotherVisitor);
-	elementB.accept(visitor);
-	elementB.accept(anotherVisitor);
+	// Apply Percentage Discount
+	console.log('--- Applying Percentage Discount ---');
+	const percentageDiscountVisitor = new PercentageDiscountVisitor();
+	items.forEach((item) => item.accept(percentageDiscountVisitor));
+
+	// Apply Flat Discount
+	console.log('--- Applying Flat Discount ---');
+	const flatDiscountVisitor = new FlatDiscountVisitor();
+	items.forEach((item) => item.accept(flatDiscountVisitor));
 };

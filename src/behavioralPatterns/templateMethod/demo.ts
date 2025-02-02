@@ -1,22 +1,13 @@
-import { AnotherOrderBucket, OrderBucket } from './index';
+import { CSVProcessor, JSONProcessor } from './index';
+import { join } from 'node:path';
 
 export const demoTemplateMethod = () => {
-	const orderBucket = new OrderBucket();
-	const anotherOrderBucket = new AnotherOrderBucket();
+	// Using the Template Method pattern
+	const csvProcessor = new CSVProcessor();
+	csvProcessor.process(join(__dirname, './data.csv'));
 
-	orderBucket.addProduct({
-		price: 100,
-		name: 'Test',
-		discount: 0.1,
-		description: 'Some test product',
-	});
-	anotherOrderBucket.addProduct({
-		price: 1000,
-		name: 'Test 1',
-		discount: 0.15,
-		description: 'Some test product 2',
-	});
+	console.log("===");
 
-	orderBucket.makePurchase();
-	anotherOrderBucket.makePurchase();
+	const jsonProcessor = new JSONProcessor();
+	jsonProcessor.process(join(__dirname, './data.json'));
 };

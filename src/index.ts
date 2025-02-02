@@ -75,10 +75,11 @@ import { demoCommand } from './behavioralPatterns/command/demo';
 // demoObserver();
 // console.log('\n----- State -----');
 // demoState();
-console.log('\n----- Strategy -----');
-demoStrategy();
+// console.log('\n----- Strategy -----');
+// demoStrategy();
+console.log('\n----- Template Method -----');
+demoTemplateMethod();
 // console.log('\n----- Visitor -----');
 // demoVisitor();
-// console.log('----- Template Method -----');
-// demoTemplateMethod();
+
 

@@ -17,6 +17,8 @@
     "typescript": "5.7.2"
   },
   "dependencies": {
+    "@faker-js/faker": "^9.4.0",
+    "json-2-csv": "^5.5.8",
     "prettier": "^3.4.2"
   }
 }

@@ -1,76 +1,78 @@
-import { generateRandomId } from '../../utils/generateRandomId';
+// Abstract class representing a DataProcessor
+import * as fs from "node:fs";
+import * as parser from "json-2-csv";
+import { faker } from '@faker-js/faker';
 
-type ProductData = {
-	price: number;
-	discount: number;
-	name: string;
-	description: string;
+type Employee = {
+	ID: number,
+	Name: string;
+	Position: string;
+	Department: string;
+	Salary: number;
 };
 
-abstract class IProduct {
-	productId: string;
-	price: number;
-	discount: number;
-	finalPrice: number;
-	name: string;
-	description: string;
-	protected constructor(productData: ProductData) {
-		this.productId = generateRandomId();
-		this.description = productData.description;
-		this.price = productData.price;
-		this.discount = productData.discount;
-		this.name = productData.name;
+abstract class DataProcessor {
+	// The template method - defines the skeleton of the algorithm
+	public process(filePath: string): void {
+		const data = this.readData(filePath);
 
-		this.finalPrice = this.price - this.price * this.discount;
+		const processed = this.processData(data);
+
+		this.saveData(filePath, processed);
+	}
+
+	// Abstract method: To be implemented by subclasses
+	protected abstract readData(filePath: string): string;
+
+	// Abstract method: To be implemented by subclasses
+	protected abstract processData(data: string): string;
+
+	// Concrete method: Can be shared by all subclasses
+	protected saveData(path: string, data: string): void {
+		fs.writeFileSync(path, data, { encoding: 'utf-8' });
+		console.log("Data saved successfully!");
 	}
 }
 
-export class Product extends IProduct {
-	constructor(productData: ProductData) {
-		super(productData);
+// Subclass for processing CSV data
+export class CSVProcessor extends DataProcessor {
+	// Implementing the readData method
+	protected readData(filePath: string): string {
+		console.log("Reading data from a CSV file...");
+		return fs.readFileSync(filePath, { encoding: 'utf-8' });
+	}
+
+	// Implementing the processData method
+	protected processData(data: string): string {
+		console.log("Processing CSV data...");
+
+		const json = parser.csv2json(data);
+
+		const lastItem = json[json.length - 1] as Employee;
+
+		json.push({
+			ID: lastItem.ID + 1,
+			Name: faker.person.fullName(),
+			Position: faker.person.jobTitle(),
+			Department: faker.commerce.department(),
+			Salary: faker.number.int({ min: 10000, max: 100000 }),
+		});
+
+		return parser.json2csv(json);
 	}
 }
 
-class IOrderBucket {
-	orders: Product[];
-	orderPrice: number;
-
-	constructor() {
-		this.orders = [];
-		this.orderPrice = 0;
+// Subclass for processing JSON data
+export class JSONProcessor extends DataProcessor {
+	// Implementing the readData method
+	protected readData(filePath: string): string {
+		console.log("Reading data from a JSON file...");
+		return fs.readFileSync(filePath, { encoding: 'utf-8' });
 	}
 
-	/**
-	 * Template method that won't be overridden
-	 */
-	buildOrder() {
-		this.orderPrice = this.orders.reduce((acc, b) => acc + b.finalPrice, 0);
-	}
-	addProduct(product: ProductData) {
-		const newProduct = new Product(product);
-
-		this.orders.push(newProduct);
-	}
-	applyOrderDiscount(number: number) {
-		console.log(this.orderPrice * number);
-		this.orderPrice -= this.orderPrice * number;
-	}
-	makePurchase() {
-		throw Error('You must implement this method');
-	}
-}
-
-export class OrderBucket extends IOrderBucket {
-	makePurchase() {
-		this.buildOrder();
-		console.log(`${this.constructor.name} order has ${this.orderPrice} price`);
-	}
-}
-
-export class AnotherOrderBucket extends IOrderBucket {
-	makePurchase() {
-		this.buildOrder();
-		this.applyOrderDiscount(0.2);
-		console.log(`${this.constructor.name} order has ${this.orderPrice} price`);
+	// Implementing the processData method
+	protected processData(data: string): string {
+		console.log("Processing JSON data...");
+		return data;
 	}
 }
